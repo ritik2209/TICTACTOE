@@ -11,7 +11,7 @@ html {
   text-align: center;
 }
 
-.col-md-7 {
+.col-7 {
   
   background-size: 100%;
   padding-bottom: 50%;
@@ -24,7 +24,7 @@ html {
   width: 100%;
   margin-top: -50px;
   padding: 50px 0 0 0;
-  box-sizing: border-box;
+  box-sizing: border-box;
 }
 td {
 	border:  2px solid #333;
@@ -40,9 +40,9 @@ td {
 table {
 	border-collapse: collapse;
 	position: absolute;
-	left: 50%;
+	left:50%;
 	margin-left: -155px;
-	top: 50px;
+	top: auto;
 }
 
 table tr:first-child td {
@@ -60,5 +60,3 @@ table tr td:first-child {
 table tr td:last-child {
 	border-right: 0;
 }
-
-
