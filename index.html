@@ -1,161 +1,68 @@
+
 <!DOCTYPE html>
-<html style="background-color: #d0cfcf;">
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Tic-Tac Toe!</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css"
+        integrity="sha256-aPeK/N8IHpHsvPBCf49iVKMdusfobKo2oxF8lRruWJg=" crossorigin="anonymous">  
+        <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/bulma-switch/dist/css/bulma-switch.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bulma-extensions@6.2.7/dist/js/bulma-extensions.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Tic-Tac-Toe!</title>
 </head>
 
-<body class="text-center text-white flex-wrap" style="background-color: white;width: 100%;height: 100%;margin: 0;">
-    <h2 style="margin: 0px;color: rgb(7,60,114);">TIC-TAC TOE USING MINIMAX ALGORITHM</h1>
-    <div>
-        <div class="container text-white">
-            <div class="row">
-                <div class="col-12">
-                    <p></p>
-                </div>
-            </div>
-        </div>
+<body>
+    <div class="has-text-centered has-text-white">
+        <h1 class="site-header">
+            Tic-Tac-Toe Using Mini-Max Algorithm ( Alpha-Beta Pruning)
+        </h1>
     </div>
-    <div class="text-white bg-white">
-        <div class="container">
-            <div class="row">
-                <div class="col d-xl-flex justify-content-xl-end align-items-xl-start"><img src="assets/img/hum.jpg" width="100%" ></div>
-                <div class="col  d-xl-flex align-items-xl-center"><img class="flex-fill" src="assets/img/vs1.jpg" width="100%"></div>
-                <div class="col "><img src="assets/img/comp1.jpg" width="100%" ></div>
+    <div class="columns mx-2 my-2 is-vcentered is-centered">
+        <div class="column mx-2 my-2 is-one-quarter is-vcentered has-text-centered has-text-white">
+            <form>
+                <div class="select is-multiple is-size-6">
+                    <label class="depth">Difficulty?</label>
+                    <select multiple size="5" class="depth" id="depth" name="depth" background-color:'#3CBC8D';>
+                        <option value="E">1</option>
+                        <option value="M">2</option>
+                        <option value="D">3</option>
+                        <option value="VD">4</option>
+                        <option value="I">Unbeatable</option>
+                    </select>
+                </div>
+                <div class="select is-multiple is-size-6">
+                    <label class="player" >Who Starts First?</label>
+                    <select multiple size="2" class="player" id="player" name="player">
+                        <option value="ai">Computer</option>
+                        <option value="human">Human</option>
+                    </select>
+                  
+                </div>
               
-          
-                <div class="col-8">
-                  <table>
-                    <tr>
-                      <td class="cell" id="0"></td>
-                      <td class="cell" id="1"></td>
-                      <td class="cell" id="2"></td>
-                    </tr>
-                    <tr>
-                      <td class="cell" id="3"></td>
-                      <td class="cell" id="4"></td>
-                      <td class="cell" id="5"></td>
-                    </tr>
-                    <tr>
-                      <td class="cell" id="6"></td>
-                      <td class="cell" id="7"></td>
-                      <td class="cell" id="8"></td>
-                    </tr>
-                  </table>
-                </div>
-                  </div>
-            </div>
+            </form>
+              
         </div>
-    </div>
-    <div>
-        <div class="container">
-            <div class="row">
-                <div class="col-4">
-                    <p></p>
-                </div>
+        <button class="btn btn-success btn-default text-body border rounded-circle  btn-lg" id="submit">Start Game</button>
+        <div class="column is-two-fifths has-text-centered is-light">
+            <div class="result">
+                <h1 class="is-size-10" id='winner'>&nbsp;</h1>
             </div>
+            <div id='can1'></div>
         </div>
+        
     </div>
-    <div>
-        <div class="container">
-            <div class="row text-nowrap">
-                <div class="col-4">
-                    <h5 class="text-dark">Difficulty</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div></div>
-    <div>
-        <div class="container">
-            <div class="row">
-                <div class="col-4">
-                    <div class="btn-group" role="group"><button class="btn btn-primary btn-default border rounded-0" type="button">1</button><button class="btn btn-primary btn-default border rounded-0" type="button">2</button><button class="btn btn-primary btn-default border rounded-0" type="button">3</button>
-                        <button
-                            class="btn btn-primary btn-default border rounded-0" type="button">4</button><button class="btn btn-primary btn-default border rounded-0" type="button">Unlimited</button></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="container">
-            <div class="row">
-                <div class="col-4">
-                    <p></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="container">
-            <div class="row">
-                <div class="col-4">
-                    <h5 class="text-dark">Who Plays First?</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="container">
-            <div class="row">
-                <div class="col-4">
-                    <p></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="container">
-            <div class="row">
-                <div class="col-4">
-                    <div class="btn-group" role="group"><button class="btn btn-primary btn-default border rounded-0" type="button">Human</button><button class="btn btn-primary btn-default border rounded-0 border-light" type="button">Computer</button></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div style="background-color: #d0cfcf;"></div>
-    <div>
-        <div class="container">
-            <div class="row">
-                <div class="col-4">
-                    <p></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="container">
-            <div class="row">
-                
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="container">
-            <div class="row">
-                <div class="col-4"><button class="btn btn-success btn-default text-body border rounded-circle" type="button">Play Again</button></div>
-            </div>
-        </div>
-    </div>
-    <div class="text-white"></div>
-    <div>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <p></p><a class="text-black-50" href="https://github.com/ritik2209/TICTACTOE">View on GitHub</a></div>
-            </div>
-        </div>
-    </div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  
+  
 </body>
-
+<script src="game.js"></script>
 </html>
